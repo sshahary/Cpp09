@@ -23,4 +23,8 @@ class BitcoinExchange
 
 };
 
+std::string intToString(int n);
+std::string trim(const std::string& str);
+std::string formatFloat(float value);
+
 #endif

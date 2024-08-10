@@ -7,10 +7,13 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    try {
+    try
+    {
         BitcoinExchange exchange("bitcoin_prices.csv");
         exchange.processFile(argv[1]);
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception& e)
+    {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;
     }
