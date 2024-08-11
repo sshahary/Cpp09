@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
 
     try
     {
-        BitcoinExchange exchange("bitcoin_prices.csv");
+        BitcoinExchange exchange("data.csv");
         exchange.processFile(argv[1]);
     }
     catch (const std::exception& e)
