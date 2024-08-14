@@ -73,3 +73,47 @@ void PmergeMe::displayAfter() const
     }
     std::cout << std::endl;
 }
+
+void PmergeMe::mergeInsertSort(std::vector<int>& data)
+{
+    if (data.size() <= 1)
+        return;
+
+    std::vector<int> left(data.begin(), data.begin() + data.size() / 2);
+    std::vector<int> right(data.begin() + data.size() / 2, data.end());
+
+    mergeInsertSort(left);
+    mergeInsertSort(right);
+
+    std::merge(left.begin(), left.end(), right.begin(), right.end(), data.begin());
+}
+
+void PmergeMe::mergeInsertSort(std::deque<int>& data)
+{
+    if (data.size() <= 1)
+    return;
+
+    std::deque<int> left(data.begin(), data.begin() + data.size() / 2);
+    std::deque<int> right(data.begin() + data.size() / 2, data.end());
+
+    mergeInsertSort(left);
+    mergeInsertSort(right);
+
+    std::merge(left.begin(), left.end(), right.begin(), right.end(), data.begin());
+}
+
+void PmergeMe::measureTime(void (PmergeMe::*sortFunc)(std::vector<int>&), std::vector<int>& data, double& time)
+{
+    auto start = std::chrono::high_resolution_clock::now();
+    (this->*sortFunc)(data);
+    auto end = std::chrono::high_resolution_clock::now();
+    time = std::chrono::duration<double, std::micro>(end - start).count();
+}
+
+void PmergeMe::measureTime(void (PmergeMe::*sortFunc)(std::deque<int>&), std::deque<int>& data, double& time)
+{
+    auto start = std::chrono::high_resolution_clock::now();
+    (this->*sortFunc)(data);
+    auto end = std::chrono::high_resolution_clock::now();
+    time = std::chrono::duration<double, std::micro>(end - start).count();
+}
