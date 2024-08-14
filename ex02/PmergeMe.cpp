@@ -1,3 +1,5 @@
+#include "Pmergeme.hpp"
+
 PmergeMe::PmergeMe() : vectorTime(0), dequeTime(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe& other) : vectorData(other.vectorData), dequeData(other.dequeData),
@@ -16,3 +18,18 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 }
 
 PmergeMe::~PmergeMe() {}
+
+void PmergeMe::parseInput(int argc, char* argv[])
+{
+    for (int i = 1; i < argc; ++i)
+    {
+        int value;
+        std::istringstream iss(argv[i]);
+        if (!(iss >> value) || value < 0)
+        {
+            throw std::runtime_error("Error: invalid input");
+        }
+        vectorData.push_back(value);
+        dequeData.push_back(value);
+    }
+}

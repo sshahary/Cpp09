@@ -14,6 +14,8 @@ class PmergeMe
     PmergeMe(const PmergeMe& other);
     PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe();
+
+    void parseInput(int argc, char* argv[]);
 };
 
 #endif
