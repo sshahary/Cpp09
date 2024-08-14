@@ -33,3 +33,43 @@ void PmergeMe::parseInput(int argc, char* argv[])
         dequeData.push_back(value);
     }
 }
+
+void PmergeMe::sortVector(std::vector<int>& data)
+{
+    mergeInsertSort(data);
+}
+
+void PmergeMe::sortDeque(std::deque<int>& data)
+{
+    mergeInsertSort(data);
+}
+
+double PmergeMe::getVectorTime() const
+{
+    return vectorTime;
+}
+
+double PmergeMe::getDequeTime() const
+{
+    return dequeTime;
+}
+
+void PmergeMe::displayBefore() const
+{
+    std::cout << "Before: ";
+    for (size_t i = 0; i < vectorData.size(); ++i)
+    {
+        std::cout << vectorData[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+void PmergeMe::displayAfter() const
+{
+    std::cout << "After: ";
+    for (size_t i = 0; i < vectorData.size(); ++i)
+    {
+        std::cout << vectorData[i] << " ";
+    }
+    std::cout << std::endl;
+}

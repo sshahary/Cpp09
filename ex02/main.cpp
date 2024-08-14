@@ -10,6 +10,10 @@ int main(int argc, char* argv[])
     }
     PmergeMe sorter;
     sorter.parseInput(argc, argv);
+    sorter.displayBefore();
+    sorter.getDequeTime();
+    sorter.displayAfter();
+    
     return 0;
 
 }

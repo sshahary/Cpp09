@@ -15,6 +15,13 @@ class PmergeMe
     PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe();
 
+    void sortVector(std::vector<int>& data);
+    void sortDeque(std::deque<int>& data);
+
+    double getVectorTime() const;
+    double getDequeTime() const;
+
+
     void parseInput(int argc, char* argv[]);
 };
 
