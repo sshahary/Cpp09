@@ -7,7 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-#include <chrono>
+#include <ctime>
 #include <algorithm>
 
 class PmergeMe
@@ -24,6 +24,8 @@ class PmergeMe
     PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe();
 
+    std::vector<int>& getVectorData();
+    std::deque<int>& getDequeData();
     void parseInput(int argc, char* argv[]);
     void sortVector(std::vector<int>& data);
     void sortDeque(std::deque<int>& data);
@@ -31,10 +33,12 @@ class PmergeMe
     void displayAfter() const;
     double getVectorTime() const;
     double getDequeTime() const;
+    void setVectorTime(double time);
+    void setDequeTime(double time);
 
     void mergeInsertSort(std::vector<int>& data);
     void mergeInsertSort(std::deque<int>& data);
-     void measureTime(void (PmergeMe::*sortFunc)(std::vector<int>&), std::vector<int>& data, double& time);
+    void measureTime(void (PmergeMe::*sortFunc)(std::vector<int>&), std::vector<int>& data, double& time);
     void measureTime(void (PmergeMe::*sortFunc)(std::deque<int>&), std::deque<int>& data, double& time);
 
 

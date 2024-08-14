@@ -44,6 +44,16 @@ void PmergeMe::sortDeque(std::deque<int>& data)
     mergeInsertSort(data);
 }
 
+void PmergeMe::setVectorTime(double time)
+{
+    vectorTime = time;
+}
+
+void PmergeMe::setDequeTime(double time)
+{
+    dequeTime = time;
+}
+
 double PmergeMe::getVectorTime() const
 {
     return vectorTime;
@@ -52,6 +62,16 @@ double PmergeMe::getVectorTime() const
 double PmergeMe::getDequeTime() const
 {
     return dequeTime;
+}
+
+std::vector<int>& PmergeMe::getVectorData()
+{
+    return vectorData;
+}
+
+std::deque<int>& PmergeMe::getDequeData()
+{
+    return dequeData;
 }
 
 void PmergeMe::displayBefore() const
@@ -104,16 +124,16 @@ void PmergeMe::mergeInsertSort(std::deque<int>& data)
 
 void PmergeMe::measureTime(void (PmergeMe::*sortFunc)(std::vector<int>&), std::vector<int>& data, double& time)
 {
-    auto start = std::chrono::high_resolution_clock::now();
+    clock_t start = clock();
     (this->*sortFunc)(data);
-    auto end = std::chrono::high_resolution_clock::now();
-    time = std::chrono::duration<double, std::micro>(end - start).count();
+    clock_t end = clock();
+    time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;  // Convert to microseconds
 }
 
 void PmergeMe::measureTime(void (PmergeMe::*sortFunc)(std::deque<int>&), std::deque<int>& data, double& time)
 {
-    auto start = std::chrono::high_resolution_clock::now();
+    clock_t start = clock();
     (this->*sortFunc)(data);
-    auto end = std::chrono::high_resolution_clock::now();
-    time = std::chrono::duration<double, std::micro>(end - start).count();
+    clock_t end = clock();
+    time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;  // Convert to microseconds
 }

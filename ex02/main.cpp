@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
@@ -15,15 +16,20 @@ int main(int argc, char* argv[])
 
         sorter.displayBefore();
 
-        sorter.measureTime(&PmergeMe::sortVector, sorter.vectorData, sorter.vectorTime);
-        sorter.measureTime(&PmergeMe::sortDeque, sorter.dequeData, sorter.dequeTime);
+        double vectorTime;
+        sorter.measureTime(&PmergeMe::sortVector, sorter.getVectorData(), vectorTime);
+        sorter.setVectorTime(vectorTime);
+
+        double dequeTime;
+        sorter.measureTime(&PmergeMe::sortDeque, sorter.getDequeData(), dequeTime);
+        sorter.setDequeTime(dequeTime);
 
         sorter.displayAfter();
 
-        std::cout << "Time to process a range of " << sorter.vectorData.size() << " elements with std::vector: "
+        std::cout << "Time to process a range of " << sorter.getVectorData().size() << " elements with std::vector: "
                   << sorter.getVectorTime() << " us" << std::endl;
 
-        std::cout << "Time to process a range of " << sorter.dequeData.size() << " elements with std::deque: "
+        std::cout << "Time to process a range of " << sorter.getDequeData().size() << " elements with std::deque: "
                   << sorter.getDequeTime() << " us" << std::endl;
     }
     catch (const std::exception& e)
