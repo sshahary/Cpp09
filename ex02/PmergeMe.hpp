@@ -8,6 +8,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <ctime>
+#include <sys/time.h>
 #include <algorithm>
 
 class PmergeMe

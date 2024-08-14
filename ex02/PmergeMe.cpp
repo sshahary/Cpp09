@@ -121,19 +121,37 @@ void PmergeMe::mergeInsertSort(std::deque<int>& data)
 
     std::merge(left.begin(), left.end(), right.begin(), right.end(), data.begin());
 }
-
 void PmergeMe::measureTime(void (PmergeMe::*sortFunc)(std::vector<int>&), std::vector<int>& data, double& time)
 {
-    clock_t start = clock();
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
     (this->*sortFunc)(data);
-    clock_t end = clock();
-    time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;  // Convert to microseconds
+    gettimeofday(&end, NULL);
+    time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_usec - start.tv_usec) / 1000.0;
 }
 
 void PmergeMe::measureTime(void (PmergeMe::*sortFunc)(std::deque<int>&), std::deque<int>& data, double& time)
 {
-    clock_t start = clock();
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
     (this->*sortFunc)(data);
-    clock_t end = clock();
-    time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;  // Convert to microseconds
+    gettimeofday(&end, NULL);
+    time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_usec - start.tv_usec) / 1000.0;
 }
+
+
+// void PmergeMe::measureTime(void (PmergeMe::*sortFunc)(std::vector<int>&), std::vector<int>& data, double& time)
+// {
+//     clock_t start = clock();
+//     (this->*sortFunc)(data);
+//     clock_t end = clock();
+//     time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;  // Convert to microseconds
+// }
+
+// void PmergeMe::measureTime(void (PmergeMe::*sortFunc)(std::deque<int>&), std::deque<int>& data, double& time)
+// {
+//     clock_t start = clock();
+//     (this->*sortFunc)(data);
+//     clock_t end = clock();
+//     time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;  // Convert to microseconds
+// }
