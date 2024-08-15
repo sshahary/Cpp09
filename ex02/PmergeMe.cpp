@@ -6,11 +6,11 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:58:39 by sshahary          #+#    #+#             */
-/*   Updated: 2024/08/15 15:58:40 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:06:14 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Pmergeme.hpp"
+#include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe() : vectorTime(0), dequeTime(0) {}
 
